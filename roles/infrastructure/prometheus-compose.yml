@@ -1,0 +1,19 @@
+version: '2.1'
+services:
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - /vagrant/endava-techflow/roles/infrastructure/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      management: {}
+
+networks:
+  management:
+    driver: bridge
+    ipam:
+       driver: default
+       config:
+       - subnet: 172.28.0.1/24
+

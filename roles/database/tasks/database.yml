@@ -1,0 +1,15 @@
+- name: Create a new database with name 'javelibrary'
+  mysql_db:
+    login_user: root
+    login_password: admin
+    login_host: 127.0.0.1
+    name: javelibrary
+    state: present
+- name: Restore database
+  mysql_db:
+    login_user: root
+    login_password: admin
+    login_host: 127.0.0.1
+    name: javelibrary
+    state: import
+    target: /vagrant/endava-techflow/roles/database/data.sql

@@ -1,0 +1,5 @@
+{
+  "name": "create-techflow-docker-repo",
+  "type": "groovy",
+  "content": "try { repository.createDockerHosted('techflow-docker', 5000, null, 'default', true, false, org.sonatype.nexus.repository.storage.WritePolicy.ALLOW); return groovy.json.JsonOutput.toJson([result: 'Success! Docker repo created!']) } catch(Exception ex) {return groovy.json.JsonOutput.toJson([result: ex.toString()])  } "
+}

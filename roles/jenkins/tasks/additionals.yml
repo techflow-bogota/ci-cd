@@ -1,0 +1,7 @@
+---
+- name: copy maven plugin configuration file
+  copy:
+    src: /vagrant/endava-techflow/roles/jenkins/hudson.tasks.Maven.xml
+    dest: /var/lib/jenkins/
+    owner: jenkins
+    group: jenkins

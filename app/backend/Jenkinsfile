@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+    tools{
+        maven 'maven'
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git "http://localhost:3001/administrator/techflow-backend.git"
+            }
+        }
+        stage ('Build binary') {
+            steps {
+                sh './build_java.sh'
+            }
+        }
+        stage('Build Docker images') {
+            steps {
+                sh './build_image.sh $BUILD_NUMBER'
+            }
+        }
+        stage('Upload Artifact') {
+            steps {
+                sh './publish.sh $BUILD_NUMBER'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh './update_backend_image.sh $BUILD_NUMBER'
+            }
+        }
+    }
+}

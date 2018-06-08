@@ -1,0 +1,15 @@
+{
+  "app_name": "Biblioteca",
+  "host": "http://localhost:8082",
+  "getbooks": "/libros",
+  "getbook": "/libro",
+  "gethistorial": "/historial",
+  "getuser": "/usuario",
+  "getauthors": "/autores",
+  "login": "/login",
+  "addbook": "/libro",
+  "adduser": "/registro",
+  "deletebook": "/libro",
+  "borrow": "/prestamo",
+  "returnbook": "/prestamo"
+}

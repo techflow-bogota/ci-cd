@@ -1,0 +1,44 @@
+version: '3.0'
+services:
+  nexus:
+    hostname: nexus
+    build: nexus
+    container_name: techflow-nexus
+    ports:
+      - "8081:8081" # default port (web ui, maven repos, npm repos)
+      - "5000:5000" # docker repo
+    volumes:
+  #    ## Switch the following lines to mount the /mnt/docker/nexus-data directory instead of using the volume
+  #    #- /mnt/docker/nexus-data:/nexus-data
+      - nexus_data:/nexus-data
+  #  depends_on:
+  #    # this depends on thingamajig hacking the list of insecure services, otherwise docker push fails
+  #    - thingamajig
+
+
+  gitea:
+    hostname: gitea
+    build: gitea
+    container_name: techflow-gitea
+    ports:
+      - "3001:3000"
+      - "5022:5022"
+    volumes:
+      ## Switch the following lines to mount the /mnt/docker/gitea-data directory instead of using the volume
+      #- /mnt/docker/gitea-data:/data
+      - gitea_data:/data
+
+  # This container just handles some workarounds for us:
+  #  - Adds entries to the host's /etc/hosts file for all running containers
+  #    so that the host can access the containers directly by name
+  #thingamajig:
+  #  build: thingamajig
+  #  container_name: cd_thingamajig
+  #  volumes:
+  #    - /var/run/docker.sock:/var/run/docker.sock
+  #    - /var/lib/boot2docker/profile:/tmp/dockerprofile.txt
+  #    - /etc/hosts:/etc/hosts
+
+volumes:
+  nexus_data:
+  gitea_data:

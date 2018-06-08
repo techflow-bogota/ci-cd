@@ -1,0 +1,69 @@
+### Front end, first deployment in swarm###
+
+- file:
+    path: /vagrant/endava-techflow/app/frontend/build.sh
+    mode: 0755
+
+- name: Create first frontend image
+  command: /vagrant/endava-techflow/app/frontend/build.sh 0
+  args:
+    chdir: /vagrant/endava-techflow/app/frontend/
+
+- file:
+    path: /vagrant/endava-techflow/app/frontend/publish.sh
+    mode: 0755
+
+- name: Publish image in the repo
+  command: /vagrant/endava-techflow/app/frontend/publish.sh 0
+  args:
+    chdir: /vagrant/endava-techflow/app/frontend/
+
+- file:
+    path: /vagrant/endava-techflow/app/frontend/create_frontend_service.sh
+    mode: 0755
+
+- name: Create Front End Service
+  command: /vagrant/endava-techflow/app/frontend/create_frontend_service.sh 0
+  ignore_errors: True
+  args:
+    chdir: /vagrant/endava-techflow/app/frontend/
+
+
+### Back end, first deployment in swarm###
+
+- file:
+    path: /vagrant/endava-techflow/app/backend/build_java.sh
+    mode: 0755
+
+- name: Compile backend
+  command: /vagrant/endava-techflow/app/backend/build_java.sh
+  args:
+    chdir: /vagrant/endava-techflow/app/backend/
+
+- file:
+    path: /vagrant/endava-techflow/app/backend/build_image.sh
+    mode: 0755
+
+- name: Create first backend image
+  command: /vagrant/endava-techflow/app/backend/build_image.sh 0
+  args:
+    chdir: /vagrant/endava-techflow/app/backend/
+
+- file:
+    path: /vagrant/endava-techflow/app/backend/publish.sh
+    mode: 0755
+
+- name: Publish backend image in the repo
+  command: /vagrant/endava-techflow/app/backend/publish.sh 0
+  args:
+    chdir: /vagrant/endava-techflow/app/backend/
+
+- file:
+    path: /vagrant/endava-techflow/app/backend/create_backend_service.sh
+    mode: 0755
+
+- name: Create Backend Service
+  command: /vagrant/endava-techflow/app/backend/create_backend_service.sh 0
+  ignore_errors: True
+  args:
+    chdir: /vagrant/endava-techflow/app/backend/

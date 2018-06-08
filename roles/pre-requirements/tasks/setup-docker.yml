@@ -1,0 +1,26 @@
+---
+- name: Install docker.
+  become: true
+  apt:
+    update_cache: yes
+    name: docker.io
+    state: present
+  
+- name: Start service docker, if not running
+  service:
+    name: docker
+    state: started
+
+- name: Add user vagrant to docker group
+  user:
+    name: vagrant
+    groups: vagrant, docker
+    append: yes
+    
+#- name: Install docker compose.
+#  get_url:
+#    url: "https://github.com/docker/compose/releases/download/1.21.2/docker-compose-Linux-x86_64"
+#    dest: "/usr/local/bin/docker-compose"
+#    owner: "root"
+#    group: "root"
+#    mode: "0755"

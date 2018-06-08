@@ -1,0 +1,23 @@
+---
+- hosts: all
+  become: true
+  vars:
+    #jenkins
+    jenkins_hostname: localhost
+    jenkins_admin_username: admin
+    jenkins_admin_password: admin
+    jenkins_plugins: [git, blueocean,nexus-artifact-uploader]
+
+    #mysql
+    mysql_container_name: mysql
+    mysql_network: app
+    mysql_user: root
+    mysql_password: admin
+    mysql_database: javelibrary
+    mysql_root_password: admin
+
+  roles:
+      - pre-requirements
+      - infrastructure
+      - database
+      - jenkins

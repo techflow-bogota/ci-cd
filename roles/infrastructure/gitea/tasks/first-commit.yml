@@ -1,0 +1,7 @@
+- file:
+    path: /vagrant/endava-techflow/roles/infrastructure/gitea/first-commit.sh
+    mode: 0755
+
+- name: Execute the command in remote shell; stdout goes to the specified file on the remote.
+  become_user: vagrant
+  shell: /vagrant/endava-techflow/roles/infrastructure/gitea/first-commit.sh 

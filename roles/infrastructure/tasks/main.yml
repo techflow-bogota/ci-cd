@@ -1,0 +1,4 @@
+- include: setup-environment.yml
+- include_role:
+    name: infrastructure/gitea
+- include: create_services.yml    
